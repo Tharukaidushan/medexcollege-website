@@ -52,15 +52,15 @@
                                                             <a href="#">{{ $course->category->name }}</a>
                                                          </div>
                                                          <h3 class="course__title">
-                                                            <a href="course-details.html">{{ $course->title }}</a>
+                                                            <a href="{{ route('course.inner', ['course_slug' => $course->slug]) }}">{{ $course->title }}</a>
                                                          </h3>
                               
                                                          <div class="course__bottom d-sm-flex align-items-center justify-content-between">
                                                             <div class="course__tutor">
-                                                               <a href="#"><img src="{{ 'storage/'. $course->teacher->image  }}" alt="">{{ $course->teacher->first_name }}</a>
+                                                               <a href="{{ route('course.inner', ['course_slug' => $course->slug]) }}"><img src="{{ 'storage/'. $course->teacher->image  }}" alt="">{{ $course->teacher->first_name .' '. $course->teacher->last_name }}</a>
                                                             </div>
                                                             <div class="course__lesson">
-                                                               <a href="#"><svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                               <a href="{{ route('course.inner', ['course_slug' => $course->slug]) }}"><svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                   <path d="M1 12.2V4.49999C1 1.7 1.70588 1 4.52941 1H9.47059C12.2941 1 13 1.7 13 4.49999V11.5C13 11.598 13 11.696 12.9929 11.794" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
                                                                   <path d="M3.01176 10.0999H13V12.5498C13 13.9008 11.8918 14.9998 10.5294 14.9998H3.47059C2.10824 14.9998 1 13.9008 1 12.5498V12.0948C1 10.9959 1.90353 10.0999 3.01176 10.0999Z" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
                                                                   <path d="M4.17647 4.5H9.82353" stroke="#49535B" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -76,7 +76,7 @@
                                                             <span>Rs. {{ $course->price }}</span>
                                                          </div>
                                                          <div class="course__btn">
-                                                            <a href="course-details.html" class="link-btn-2">
+                                                            <a href="{{ route('course.inner', ['course_slug' => $course->slug]) }}" class="link-btn-2">
                                                                Know Details
                                                                <i class="far fa-arrow-right"></i>
                                                                <i class="far fa-arrow-right"></i>
@@ -149,201 +149,14 @@
                            <div class="course__sidebar-info">
                               <h3 class="course__sidebar-title">Categories</h3>
                               <ul>
+                              @foreach ($categories as $key => $category)
                                  <li>
                                     <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-eng">
-                                       <label class="m-check-label" for="m-eng">English  (6)</label>
+                                       <input class="m-check-input" type="checkbox" id="{{$category->id}}">
+                                       <label class="m-check-label" for="{{$category->id}}">{{ $category->name }}</label>
                                     </div>
                                  </li>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-edu">
-                                       <label class="m-check-label" for="m-edu">Education  (8)</label>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-bus">
-                                       <label class="m-check-label" for="m-bus">Business  (5)</label>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-design">
-                                       <label class="m-check-label" for="m-design">UX Design  (3)</label>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-math">
-                                       <label class="m-check-label" for="m-math">Mathematics  (3)</label>
-                                    </div>
-                                 </li>
-                              </ul>
-                           </div>
-                        </div>
-                        <div class="course__sidebar-widget white-bg">
-                           <div class="course__sidebar-info">
-                              <h3 class="course__sidebar-title">Price Filter</h3>
-                              <ul>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-all-course">
-                                       <label class="m-check-label" for="m-all-course">All  (204)</label>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-free">
-                                       <label class="m-check-label" for="m-free">Free Courses  (36)</label>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-premium">
-                                       <label class="m-check-label" for="m-premium">Premium Courses  (184)</label>
-                                    </div>
-                                 </li>
-                              </ul>
-                           </div>
-                        </div>
-                        <div class="course__sidebar-widget white-bg">
-                           <div class="course__sidebar-info">
-                              <h3 class="course__sidebar-title">Skill level</h3>
-                              <ul>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-level">
-                                       <label class="m-check-label" for="m-level">All Levels  (50)</label>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-beginner">
-                                       <label class="m-check-label" for="m-beginner">Beginner  (32)</label>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-intermediate">
-                                       <label class="m-check-label" for="m-intermediate">Intermediate  (17)</label>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="course__sidebar-check mb-10 d-flex align-items-center">
-                                       <input class="m-check-input" type="checkbox" id="m-expert">
-                                       <label class="m-check-label" for="m-expert">Expert  (2)</label>
-                                    </div>
-                                 </li>
-                              </ul>
-                           </div>
-                        </div>
-                        <div class="course__sidebar-widget white-bg">
-                           <div class="course__sidebar-course">
-                              <h3 class="course__sidebar-title">Related courses</h3>
-                              <ul>
-                                 <li>
-                                    <div class="course__sm d-flex align-items-center mb-30">
-                                       <div class="course__sm-thumb mr-20">
-                                          <a href="#">
-                                             <img src="assets/img/course/sm/course-sm-1.jpg" alt="">
-                                          </a>
-                                       </div>
-                                       <div class="course__sm-content">
-                                          <div class="course__sm-rating">
-                                             <ul>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                             </ul>
-                                          </div>
-                                          <h5><a href="course-details.html">Development</a></h5>
-                                          <div class="course__sm-price">
-                                             <span>$54.00</span>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="course__sm d-flex align-items-center mb-30">
-                                       <div class="course__sm-thumb mr-20">
-                                          <a href="#">
-                                             <img src="assets/img/course/sm/course-sm-2.jpg" alt="">
-                                          </a>
-                                       </div>
-                                       <div class="course__sm-content">
-                                          <div class="course__sm-rating">
-                                             <ul>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                             </ul>
-                                          </div>
-                                          <h5><a href="course-details.html">Data Science</a></h5>
-                                          <div class="course__sm-price">
-                                             <span>$72.00</span>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </li>
-                                 <li>
-                                    <div class="course__sm d-flex align-items-center mb-10">
-                                       <div class="course__sm-thumb mr-20">
-                                          <a href="#">
-                                             <img src="assets/img/course/sm/course-sm-3.jpg" alt="">
-                                          </a>
-                                       </div>
-                                       <div class="course__sm-content">
-                                          <div class="course__sm-rating">
-                                             <ul>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                                <li>
-                                                   <a href="#"><i class="fa-solid fa-star"></i></a>
-                                                </li>
-                                             </ul>
-                                          </div>
-                                          <h5><a href="course-details.html">UX Design</a></h5>
-                                          <div class="course__sm-price">
-                                             <span>Free</span>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </li>
+                                 @endforeach
                               </ul>
                            </div>
                         </div>
