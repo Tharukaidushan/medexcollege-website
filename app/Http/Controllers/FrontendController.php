@@ -19,6 +19,14 @@ class FrontendController extends Controller
         return view('pages.home', compact('categories', 'courses'));
     }
 
+    public function courseFilter()
+    {
+        $categories = Category::where('status', 1)->orderBy('order_by', 'asc')->select('name', 'id')->get();
+        $courses = Course::where('status', 1)->orderBy('order_by', 'asc')->with(['category', 'teacher'])->get();
+        
+        return view('pages.courseFilter', compact('categories', 'courses'));
+    }
+
     public function about()
     {
         $about = About::where('id', 2)->first();
