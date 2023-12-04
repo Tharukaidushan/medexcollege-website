@@ -38,6 +38,7 @@ use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 
 use Illuminate\Support\Str;
+use Closure;
 
 class CourseResource extends Resource
 {

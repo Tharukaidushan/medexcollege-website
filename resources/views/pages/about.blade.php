@@ -49,20 +49,19 @@
                 </div>
             </div>
         </section>
-        <!-- brand area start -->
-        <section class="brand__area pb-70">
+        <section class="brand__area pb-70 pt-70">
             <div class="container">
                 <div class="row">
                     <div class="col-xxl-4 col-xl-4 col-lg-4">
                         <div class="brand__wrapper">
                             <div class="section__title-wrapper-2">
-                                <span class="section__title-pre">Testimonials</span>
-                                <h3 class="section__title section__title-30">Who will you learn with?</h3>
+                                <span class="section__title-pre">Our Strength</span>
+                                <h3 class="section__title section__title-30">Embracing Our Strength</h3>
                             </div>
-                            <p>You can list your partners or instructors's brands here to show off your site's reputation
+                            <p>Discover the unyielding power within us all, igniting resilience, courage, and determination to overcome challenges and achieve success.
                             </p>
                             <div class="brand__btn">
-                                <a href="about.html" class="tp-btn-5 tp-btn-6">Contact us</a>
+                                <a href="{{ route('about') }}" class="tp-btn-5 tp-btn-6">About us</a>
                             </div>
                         </div>
                     </div>
@@ -71,37 +70,7 @@
                             <div class="row align-items-center">
                                 <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
                                     <div class="brand__item text-center m-img mb-40">
-                                        <img src="assets/img/brand/brand-1.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div class="brand__item text-center m-img mb-40">
-                                        <img src="assets/img/brand/brand-2.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div class="brand__item text-center m-img mb-40">
-                                        <img src="assets/img/brand/brand-3.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div class="brand__item text-center m-img mb-40">
-                                        <img src="assets/img/brand/brand-4.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div class="brand__item text-center m-img mb-40">
-                                        <img src="assets/img/brand/brand-5.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div class="brand__item text-center m-img mb-40">
-                                        <img src="assets/img/brand/brand-6.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6">
-                                    <div class="brand__item text-center m-img mb-40">
-                                        <img src="assets/img/brand/brand-7.png" alt="">
+                                        <img src="{{ asset('assets/img/brand/tvec.png') }}" alt="TVEC Approval Logo | Medex College">
                                     </div>
                                 </div>
                             </div>

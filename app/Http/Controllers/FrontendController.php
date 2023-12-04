@@ -21,6 +21,7 @@ class FrontendController extends Controller
 
     public function courseFilter(Request $request)
     {
+        $selectedCategory = [];
         $categorySlug = $request->query('category');
 
         if($categorySlug)
@@ -42,12 +43,18 @@ class FrontendController extends Controller
             }
         }else{
             $courses = Course::where('status', 1)->orderBy('order_by', 'asc')->with(['category', 'teacher'])->get();
+            $selectedCategory = (object)[
+                'id' => 837984
+            ];
         }
+
+
+        
 
         $categories = Category::where('status', 1)->orderBy('order_by', 'asc')->select('name', 'id')->get();
 
         
-        return view('pages.courseFilter', compact('categories', 'courses'));
+        return view('pages.courseFilter', compact('categories', 'courses', 'selectedCategory'));
     }
 
     public function about()

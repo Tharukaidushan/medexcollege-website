@@ -47,16 +47,16 @@
                                 <div class="footer__widget-content">
                                     <ul>
                                         <li>
-                                            <a href="#">About us</a>
+                                            <a href="{{ route('about') }}">About us</a>
                                         </li>
                                         <li>
-                                            <a href="#">Courses</a>
+                                            <a href="{{ route('course.filter') }}">Courses</a>
                                         </li>
                                         <li>
-                                            <a href="#">Events</a>
+                                            <a href="https://moodle.medexcollege.com/login" target="_blank">Moodle</a>
                                         </li>
                                         <li>
-                                            <a href="#">Contact us</a>
+                                            <a href="{{ route('contact') }}">Contact us</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -69,7 +69,7 @@
                                     <ul>
                                         @foreach ($categories as $category)
                                             <li>
-                                                <a href="#">{{ $category->name }}</a>
+                                                <a href="{{ route('course.filter', ['category' => $category->name]) }}">{{ $category->name }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
