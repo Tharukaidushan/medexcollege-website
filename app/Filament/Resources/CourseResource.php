@@ -81,25 +81,26 @@ class CourseResource extends Resource
                                         ->nullable()
                                         ->placeholder('Cource Code'),
 
-                                    TextInput::make('title')
+                                        TextInput::make('title')
                                         ->required()
                                         ->label('Course title')
-                                        ->placeholder('Cource title')
+                                        ->placeholder('Course title')
                                         ->reactive()
-                                        ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
-                                            if (!$get('is_slug_changed_manually') && filled($state)) {
-                                                $slug = Str::slug($state);
-                                                $existingSlugs = Course::where('slug', 'LIKE', $slug . '%')->pluck('slug')->toArray();
+                                        ->afterStateUpdated(function (Closure $get, Closure $set, ?string $state) {
+                                                if (!$get('is_slug_changed_manually') && filled($state)) {
+                                                    $slug = Str::slug($state);
+                                                    $existingSlugs = Course::where('slug', 'LIKE', $slug . '%')->pluck('slug')->toArray();
 
-                                                $suffix = 1;
-                                                while (in_array($slug, $existingSlugs)) {
-                                                    $slug = Str::slug($state) . '-' . $suffix;
-                                                    $suffix++;
+                                                    $suffix = 1;
+                                                    while (in_array($slug, $existingSlugs)) {
+                                                        $slug = Str::slug($state) . '-' . $suffix;
+                                                        $suffix++;
+                                                    }
+
+                                                    $set('slug', $slug);
                                                 }
-
-                                                $set('slug', $slug);
-                                            }
-                                        }),
+                                            })
+                                            ->reactive(),
 
                                     Textarea::make('small_description')
                                         ->nullable()

@@ -20,6 +20,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 
 use Filament\Tables\Columns\TextColumn;
+use Closure;
+use Illuminate\Support\Str;
 
 class TeacherResource extends Resource
 {
@@ -52,20 +54,21 @@ class TeacherResource extends Resource
                                         ->required()
                                         ->placeholder('Enter first name')
                                         ->reactive()
-                                        ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
-                                            if (!$get('is_slug_changed_manually') && filled($state)) {
-                                                $slug = Str::slug($state);
-                                                $existingSlugs = Teacher::where('slug', 'LIKE', $slug . '%')->pluck('slug')->toArray();
+                                        ->afterStateUpdated(function (Closure $get, Closure $set, ?string $state) {
+                                                if (!$get('is_slug_changed_manually') && filled($state)) {
+                                                    $slug = Str::slug($state);
+                                                    $existingSlugs = Teacher::where('slug', 'LIKE', $slug . '%')->pluck('slug')->toArray();
 
-                                                $suffix = 1;
-                                                while (in_array($slug, $existingSlugs)) {
-                                                    $slug = Str::slug($state) . '-' . $suffix;
-                                                    $suffix++;
+                                                    $suffix = 1;
+                                                    while (in_array($slug, $existingSlugs)) {
+                                                        $slug = Str::slug($state) . '-' . $suffix;
+                                                        $suffix++;
+                                                    }
+
+                                                    $set('slug', $slug);
                                                 }
-
-                                                $set('slug', $slug);
-                                            }
-                                        }),
+                                            })
+                                            ->reactive(),
 
                                     TextInput::make('last_name')
                                         ->nullable()

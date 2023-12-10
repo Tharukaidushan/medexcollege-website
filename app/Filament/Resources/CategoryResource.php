@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 
+use Closure;
 use Illuminate\Support\Str;
 
 class CategoryResource extends Resource
@@ -58,21 +59,21 @@ class CategoryResource extends Resource
                                         ->rules(['max:255', 'string'])
                                         ->required()
                                         ->placeholder('Category name')
-                                        ->reactive()
-                                        ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
-                                            if (!$get('is_slug_changed_manually') && filled($state)) {
-                                                $slug = Str::slug($state);
-                                                $existingSlugs = Category::where('slug', 'LIKE', $slug . '%')->pluck('slug')->toArray();
+                                        ->afterStateUpdated(function (Closure $get, Closure $set, ?string $state) {
+                                                if (!$get('is_slug_changed_manually') && filled($state)) {
+                                                    $slug = Str::slug($state);
+                                                    $existingSlugs = Category::where('slug', 'LIKE', $slug . '%')->pluck('slug')->toArray();
 
-                                                $suffix = 1;
-                                                while (in_array($slug, $existingSlugs)) {
-                                                    $slug = Str::slug($state) . '-' . $suffix;
-                                                    $suffix++;
+                                                    $suffix = 1;
+                                                    while (in_array($slug, $existingSlugs)) {
+                                                        $slug = Str::slug($state) . '-' . $suffix;
+                                                        $suffix++;
+                                                    }
+
+                                                    $set('slug', $slug);
                                                 }
-
-                                                $set('slug', $slug);
-                                            }
-                                        }),
+                                            })
+                                            ->reactive(),
                                     
                                     FileUpload::make('image')
                                         ->nullable()
