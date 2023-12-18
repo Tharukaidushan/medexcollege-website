@@ -129,10 +129,8 @@
                                             </div>
                                             <div class="contact__info-text">
                                                 <h4>Head Office</h4>
-                                                <p><a target="_blank" href="{{ $general->location }}">Medex Pharmacy
-                                                        Grocery
-                                                        and Nursing services
-                                                        No 883, Debarawewa, Tissamaharama</a></p>
+                                                <p><a target="_blank" href="{{ $general->location }}">Medex College,
+                                                        Piliyandala road, Maharagama. (Asiri Lab Building)</a></p>
 
                                             </div>
                                         </div>
